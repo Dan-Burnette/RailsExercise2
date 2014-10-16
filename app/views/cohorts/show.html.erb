@@ -3,23 +3,31 @@
 <ul>
 	<%@memberships.each_with_index do |m, i| %>
 		<li> <%= @users[i].name %> <%= m.role %> </li>
+		<!-- AKA Deleting a  membership -->
+		<%= form_tag(user_membership_path(@users[i].id , m.id), method: 'DELETE') do %>
+			<input type="submit" value="Remove from cohort">
+		<% end %>
+		<br>
 	<% end %>
 </ul>
 
 
-<h3>Add a user to this cohort </h3>
-<!-- AKA Creating a new membership -->
+
 <% @all_users.each do |u| %>
+
 	<%if !@cohort.users.include?(u)%>
+		<h3>Add user to this cohort </h3>
+		<!-- AKA Creating a new membership -->
 		<h4><%= u.name%></h4>
 		<%= form_tag(user_memberships_path(u.id), method: 'POST') do %>
-			<label>Enter a role for this user</label>
+			<label>Enter a role for this user. Must be Student or Teacher</label>
 			<input type="text" name='membership[role]' value='<%=@membership%>'> </input>
 			<input type="hidden" name='membership[user_id]' value='<%=u.id%>'> </input>
 			<input type="hidden" name='membership[cohort_id]' value='<%=@cohort.id%>'> </input>
 			<input type="submit" value="submit">
 		<% end %>
 	<% end %>
-<%end%>
+
+<% end %>
 
 
