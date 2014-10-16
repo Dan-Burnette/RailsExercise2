@@ -2,11 +2,16 @@ class MembershipsController < ApplicationController
 
   def create
     membership = Membership.new(membership_params)
-    if (membership.save)
-      redirect_to :back
+    if (membership.role == "Student" || membership.role == "Teacher")
+      if (membership.save)
+        redirect_to :back
+      else
+        redirect_to :back
+      end
     else
-      #normally display an error
+      redirect_to :back
     end
+
   end
 
 
