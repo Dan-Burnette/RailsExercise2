@@ -1,0 +1,7 @@
+<h1> <%= @user.name %> </h1>
+<h3>Memberships</h3>
+<ul>
+	<%@memberships.each_with_index do |m, i| %>
+		<li> <%= @cohort_names[i] %> <%= m.role %> </li>
+	<% end %>
+</ul>

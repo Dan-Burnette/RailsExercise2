@@ -1,0 +1,13 @@
+<%@cohorts.each do |c| %>
+<ul> 
+	<li><%=link_to c.name, cohort_path(c.id)%></li>
+</ul>
+<% end %>
+
+<%= form_tag('/cohorts', method: 'POST') do %>
+	<label>Enter a name </label>
+	<input type="text" name='cohort[name]' value='<%=@cohort.name%>'> </input>
+	<label>Enter a role </label>
+	<input type="text" name='cohort[role]' value='<%=@cohort.name%>'> </input>
+	<input type="submit" value="submit">
+<%end%>
