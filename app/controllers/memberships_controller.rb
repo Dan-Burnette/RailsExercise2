@@ -1,7 +1,6 @@
 class MembershipsController < ApplicationController
 
   def create
-    name = params[:name]
     membership = Membership.new(membership_params)
     if (membership.save)
       redirect_to :back
