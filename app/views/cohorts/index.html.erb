@@ -1,11 +1,18 @@
-<%@cohorts.each do |c| %>
-<ul> 
-	<li><%=link_to c.name, cohort_path(c.id)%></li>
-</ul>
+<%if @errors != nil %>
+	<%@errors.messages.each do |e|%>
+		<%=  e %>
+	<% end %>
 <% end %>
+<% if @errors == nil %>
+	<%@cohorts.each do |c| %>
+	<ul> 
+		<li><%=link_to c.name, cohort_path(c.id)%></li>
+	</ul>
+	<% end %>
 
-<%= form_tag('/cohorts', method: 'POST') do %>
-	<label>Create a new cohort </label>
-	<input type="text" name='cohort[name]' value='<%=@cohort.name%>'> </input>
-	<input type="submit" value="submit">
+	<%= form_tag('/cohorts', method: 'POST') do %>
+		<label>Create a new cohort </label>
+		<input type="text" name='cohort[name]' value='<%=@cohort.name%>'> </input>
+		<input type="submit" value="submit">
+	<%end%>
 <%end%>

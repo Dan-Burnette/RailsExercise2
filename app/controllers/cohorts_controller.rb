@@ -10,6 +10,7 @@ class CohortsController < ApplicationController
     if (cohort.save)
       redirect_to cohorts_path
     else
+      @errors = cohort.errors
       render "index"
     end
   end
