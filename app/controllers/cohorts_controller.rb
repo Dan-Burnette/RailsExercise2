@@ -15,7 +15,13 @@ class CohortsController < ApplicationController
   end
 
   def show
-
+    @cohort = Cohort.find(params[:id])
+    @memberships = @cohort.memberships
+    @users= []
+    @memberships.each do |m|
+      user = User.find(m.user_id)
+      @users.push(user)
+    end
   end
   
   private
