@@ -12,11 +12,9 @@
 </ul>
 
 
-
+<h3>Add users to this cohort </h3>
 <% @all_users.each do |u| %>
-
 	<%if !@cohort.users.include?(u)%>
-		<h3>Add user to this cohort </h3>
 		<!-- AKA Creating a new membership -->
 		<h4><%= u.name%></h4>
 		<%= form_tag(user_memberships_path(u.id), method: 'POST') do %>
