@@ -12,9 +12,9 @@
 
 
 <%@cohorts.each do |c| %>
-<ul> 
-	<li><%=link_to c.name, cohort_path(c.id)%></li>
-</ul>
+	<ul> 
+		<li><%=link_to c.name, cohort_path(c.id)%></li>
+	</ul>
 <% end %>
 
 <%= form_tag('/cohorts', method: 'POST') do %>

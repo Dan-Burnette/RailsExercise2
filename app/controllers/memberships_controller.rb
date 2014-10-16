@@ -11,15 +11,12 @@ class MembershipsController < ApplicationController
     else
       redirect_to :back
     end
-
   end
-
 
   def destroy
     membership = Membership.find(params[:id])
     membership.destroy
     redirect_to :back
-
   end
 
   private
