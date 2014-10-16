@@ -5,3 +5,19 @@
 		<li> <%= @users[i].name %> <%= m.role %> </li>
 	<% end %>
 </ul>
+
+
+<h3>Add a user to this cohort </h3>
+<% @all_users.each do |u| %>
+	<h4><%= u.name%></h4>
+
+<% end %> 
+<!-- AKA Creating a new membership -->
+<%= form_tag('/memberships', method: 'POST') do %>
+
+	<input type="text" name='name' value='<%=@membership%>'> </input>
+	<label>Enter a role for the user</label>
+	<input type="text" name='membership[role]' value='<%=@membership%>'> </input>
+	<input type="hidden" name='membership[cohort_id]' value='<%=@cohort.id%>'> </input>
+	<input type="submit" value="submit">
+<%end%>

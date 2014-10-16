@@ -1,7 +1,13 @@
 class MembershipsController < ApplicationController
 
   def create
-
+    name = params[:name]
+    membership = Membership.new(membership_params)
+    if (membership.save)
+      redirect_to :back
+    else
+      #normally display an error
+    end
   end
 
 
@@ -10,8 +16,8 @@ class MembershipsController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:membership).permit(:name, :role)
+  def membership_params
+    params.require(:membership).permit(:role, :user_id, :cohort_id)
   end
 
 end

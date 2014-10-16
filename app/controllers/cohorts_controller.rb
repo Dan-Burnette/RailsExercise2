@@ -15,6 +15,7 @@ class CohortsController < ApplicationController
   end
 
   def show
+    @all_users = User.all
     @cohort = Cohort.find(params[:id])
     @memberships = @cohort.memberships
     @users= []
