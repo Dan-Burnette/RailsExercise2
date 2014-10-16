@@ -6,11 +6,11 @@ class CohortsController < ApplicationController
   end
 
   def create
-    cohort = Cohort.new(cohort_params)
-    if (cohort.save)
+    @cohort = Cohort.new(cohort_params)
+    @cohorts = Cohort.all
+    if (@cohort.save)
       redirect_to cohorts_path
     else
-      @errors = cohort.errors
       render "index"
     end
   end

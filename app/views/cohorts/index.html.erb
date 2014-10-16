@@ -1,8 +1,17 @@
-<%if @errors != nil %>
-	<%@errors.messages.each do |e|%>
-		<%=  e %>
-	<% end %>
+<% if @cohort.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
+    <ul>
+    <% @cohort.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <br>
 <% end %>
+
+
+<!--  -->
 <% if @errors == nil %>
 	<%@cohorts.each do |c| %>
 	<ul> 
