@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     membership = Membership.new(membership_params)
     if (membership.role == "Student" || membership.role == "Teacher")

@@ -6,12 +6,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <nav>
-	<ul>
-		<li><%=link_to "Cohorts", cohorts_path%></li>
-		<li><%=link_to "Users", users_path%></li>
-	</ul>
+  <% if current_user %>
+    Welcome to This Class Manager Thing! You are signed in as <%= current_user.email %>.
+    <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
+    <br>
+    <nav>
+      <ul>
+        <li><%=link_to "Cohorts", cohorts_path%></li>
+        <li><%=link_to "Users", users_path%></li>
+      </ul>
   </nav>
+    <%= link_to 'Users', users_path, :method => :get %>
+  <%= link_to 'Your cohorts', user_path(current_user.id), :method => :get %>
+  <% else %>
+    Please <%= link_to 'sign in', new_user_session_path %> first.
+  <% end %>
+
 
 </head>
 
