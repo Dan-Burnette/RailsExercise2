@@ -14,8 +14,9 @@ class MembershipsController < ApplicationController
       else
         redirect_to :back
       end
+    else
+      redirect_to :back
     end
-    redirect_to :back
   end
 
   def destroy
