@@ -1,16 +1,21 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!
   def create
+    user_membership = Membership.find_by("user_id == ? AND cohort_id == ?", current_user.id, membership_params[:cohort_id])
     membership = Membership.new(membership_params)
-    if (membership.role == "Student" || membership.role == "Teacher")
-      if (membership.save)
-        redirect_to :back
+    if (user_membership != nil)
+      user_role = user_membership.role
+      if (user_role == "Student" || user_role == "Teacher")
+        if (membership.save)
+          redirect_to :back
+        else
+          redirect_to :back
+        end
       else
         redirect_to :back
       end
-    else
-      redirect_to :back
     end
+    redirect_to :back
   end
 
   def destroy
